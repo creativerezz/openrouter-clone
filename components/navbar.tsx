@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Logo } from "./logo";
 import { ThemeToggle } from "./theme-toggle";
-import { SearchIcon, MenuIcon } from "./icons";
+import { MobileNav } from "./mobile-nav";
+import { SearchIcon } from "./icons";
 
 const NAV_LINKS: { label: string; href: string; active?: boolean }[] = [
   { label: "Models", href: "#" },
@@ -70,13 +71,7 @@ export function Navbar() {
             >
               Sign up
             </Link>
-            <button
-              type="button"
-              aria-label="Open menu"
-              className="inline-flex size-9 items-center justify-center rounded-md text-muted transition-colors hover:bg-surface hover:text-dark lg:hidden"
-            >
-              <MenuIcon className="size-5" />
-            </button>
+            <MobileNav links={NAV_LINKS} />
           </div>
         </div>
       </div>
