@@ -29,6 +29,7 @@ import {
 import { AppIcon } from "./app-icon";
 import { GrowthBadge, CategoryBadge, NewBadge, ModelBadge } from "./badges";
 import { ExternalLinkIcon, ArrowRightIcon, SearchIcon } from "./icons";
+import { SelectMenu } from "./select-menu";
 
 export function RankingsExplorer() {
   const [period, setPeriod] = useState<Period>("month");
@@ -155,33 +156,19 @@ function FilterBar({
         />
       </div>
 
-      <select
+      <SelectMenu
+        options={LICENSE_OPTIONS}
         value={filters.license}
-        onChange={(e) =>
-          onChange({ ...filters, license: e.target.value as AppFilters["license"] })
-        }
-        className="rounded-lg border border-border-light bg-surface px-2.5 py-1.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
-      >
-        {LICENSE_OPTIONS.map((o) => (
-          <option key={o.id} value={o.id}>
-            {o.label}
-          </option>
-        ))}
-      </select>
+        onChange={(license) => onChange({ ...filters, license })}
+        aria-label="Filter by license"
+      />
 
-      <select
+      <SelectMenu
+        options={REGION_OPTIONS}
         value={filters.region}
-        onChange={(e) =>
-          onChange({ ...filters, region: e.target.value as AppFilters["region"] })
-        }
-        className="rounded-lg border border-border-light bg-surface px-2.5 py-1.5 text-sm text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
-      >
-        {REGION_OPTIONS.map((o) => (
-          <option key={o.id} value={o.id}>
-            {o.label}
-          </option>
-        ))}
-      </select>
+        onChange={(region) => onChange({ ...filters, region })}
+        aria-label="Filter by origin"
+      />
 
       {(filters.query || filters.license !== "all" || filters.region !== "all") && (
         <button
